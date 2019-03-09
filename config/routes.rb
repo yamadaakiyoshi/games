@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'games/new'
+  get 'games/index'
+  get 'games/show'
+  get 'games/edit'
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
   passwords:     'admins/passwords',
