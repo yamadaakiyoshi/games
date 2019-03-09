@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'posts/index'
   get 'games/new'
   get 'games/index'
   get 'games/show'
