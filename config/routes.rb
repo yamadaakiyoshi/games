@@ -33,7 +33,7 @@ resources :users
 
 
 
-  root 'users#show'
+  root 'games#top'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
