@@ -37,7 +37,6 @@ end
 
   def destroy
       @game = Game.find(params[:id])
-      binding.pry
       if @game.destroy
          redirect_to admins_path
       else

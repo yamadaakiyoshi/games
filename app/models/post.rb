@@ -3,5 +3,6 @@ class Post < ApplicationRecord
     has_many :favorites,dependent: :delete_all
     belongs_to :user
     mount_uploader :video, VideoUploader
-    validates :post_text, :video, :presence => true
+    mount_uploader :image, ImageUploader
+    validates :post_text, :presence => true
 end

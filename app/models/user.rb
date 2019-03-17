@@ -3,11 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         has_many :games,dependent: :delete_all
-         has_many :favorites,dependent: :delete_all
-         has_many :posts,dependent: :delete_all
-         has_many :postcoments,dependent: :delete_all
+         has_many :favorites,dependent: :destroy
+         has_many :posts,dependent: :destroy
+         has_many :postcoments,dependent: :destroy
          mount_uploader :image, ImageUploader
-
+         acts_as_paranoid
          
 end

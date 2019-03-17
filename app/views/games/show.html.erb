@@ -1,9 +1,39 @@
-<h1>Games#show</h1>
-<p>Find me in app/views/games/show.html.erb</p>
-<%= @game.title %>
-<%= @game.introduction %>
-<% if @game.image? %>
-　
-<%= image_tag @game.image.thumb.url %>
-　
-<% end %>
+<div class="container">
+    <div classs="row">
+        <%= form_for(@post, url: games_path) do |f| %>
+        <div class="field">
+            <%= f.label :タイトル %><br>
+            <%= f.text_field :post_text %><br>
+            <%= f.label :動画 %><br>
+            <%= f.file_field :video, :accept => 'video/*' %><br>
+            <%= f.label :画像%><br>
+            <%= f.file_field :image %><br>
+            <%= f.submit %>
+            <%= f.hidden_field :game_id, :value => @game.id %>
+        </div>
+        <% end %>
+        <div class="col-md-6">
+            <%= @game.title %>
+            <%= @game.introduction %>
+            <% if @game.image? %>
+            　
+            <%= image_tag @game.image.thumb.url,width: "100px", height: "100px" %>
+            　
+            <% end %>
+        </div>
+        <div class="col-md-6">
+
+            <% @game.posts.each do |p| %>
+            <% if p.video.present? %>
+            <%= video_tag p.video.url, width: "400px", height: "200px", 
+                    controls: true, autobuffer: true %>
+            <% end %>
+            <% if p.image.present? %>
+            <%= image_tag p.image.thumb.url,width: "100px", height: "100px" %>
+            <% end %>
+            　
+            <% end %>
+        </div>
+
+    </div>
+</div>
