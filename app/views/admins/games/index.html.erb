@@ -1,0 +1,13 @@
+<% @games.each do |game| %>
+<%= game.genre.genre_name %>
+<% if game.image? %>
+　　
+<%= image_tag game.image.thumb.url %>
+　
+<% else %>
+　　
+<p>aaaa</p>
+　
+<% end %>
+
+<% end %>

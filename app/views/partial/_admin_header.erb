@@ -1,49 +1,65 @@
-<header>
+<div class="wrapper">
+    <header>
 
-<nav>
+        <nav>
 
-      <div class="menu-icon">
-            <i class="fa fa-bars fa-2x"></i>
-      </div>
+            <div class="menu-icon">
+                <i class="fa fa-bars fa-2x"></i>
+            </div>
 
-      <div class="logo">
-            Games
-      </div>
+            <div class="logo">
+                <%= link_to "Games", root_path %>
 
-      <div class="menu">
-            <ul>
-                  <li><a href="#">マイページ</a></li>
-                  <li><a href="#">ゲーム追加</a></li>
-                  <li><a href="#">ゲーム一覧</a></li>
-                  <li><a href="#">投稿一覧</a></li>
-                  <li><a href="#">log out</a></li>
-            </ul>
-      </div>
-</nav>
+            </div>
 
-</header>
+            <div class="menu">
+                <ul>
+                    <% if admin_signed_in? %>
+                    <li>
+                        <%= link_to "ゲーム追加", new_admins_game_path %>
+                    </li>
+                    <li>
+                        <%= link_to "ゲーム一覧", admins_games_path %>
+                    </li>
+                    <li>
+                        <%= link_to "投稿一覧", admins_posts_path %>
+                    </li>
+                    <li>
+                        <%= link_to "ログアウト", destroy_user_session_path, method: :delete%>
+                    </li>
+                    <% else %>
+                    <li>
+                        <%= link_to "会員登録", new_user_registration_path %>
+                    </li>
+                    <li>
+                        <%= link_to "ログイン", new_user_session_path %>
+                    </li>
+                    <% end %>
+                </ul>
+            </div>
+        </nav>
+
+    </header>
+    <div class="main"></div>
+
+</div>
 
 <script type="text/javascript">
+    // Menu-toggle button
 
-// Menu-toggle button
-
-$(document).ready(function() {
-      $(".menu-icon").on("click", function() {
+    $(document).ready(function () {
+        $(".menu-icon").on("click", function () {
             $("nav ul").toggleClass("showing");
-      });
-});
+        });
+    });
 
-// Scrolling Effect
+    // Scrolling Effect
 
-$(window).on("scroll", function() {
-      if($(window).scrollTop()) {
+    $(window).on("scroll", function () {
+        if ($(window).scrollTop()) {
             $('nav').addClass('black');
-      }
-
-      else {
+        } else {
             $('nav').removeClass('black');
-      }
-})
-
-
+        }
+    })
 </script>

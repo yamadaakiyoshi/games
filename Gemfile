@@ -29,6 +29,8 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'kaminari', '~> 0.17.0'
 gem 'carrierwave'
+gem 'rmagick'
+gem 'paranoia'
 
 
 

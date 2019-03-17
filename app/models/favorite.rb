@@ -1,5 +1,5 @@
 class Favorite < ApplicationRecord
-    belongs_to :users
-    belongs_to :posts
-    belongs_to :games
+    belongs_to :user
+    belongs_to :post
+    belongs_to :game
 end
