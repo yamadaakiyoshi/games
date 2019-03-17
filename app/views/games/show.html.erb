@@ -1,2 +1,9 @@
 <h1>Games#show</h1>
 <p>Find me in app/views/games/show.html.erb</p>
+<%= @game.title %>
+<%= @game.introduction %>
+<% if @game.image? %>
+　
+<%= image_tag @game.image.thumb.url %>
+　
+<% end %>
