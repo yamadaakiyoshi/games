@@ -1,22 +1,11 @@
 <div class="container">
-    <%= form_for(@post, url: games_path) do |f| %>
-    <div class="field">
-        <%= f.label :タイトル %><br>
-        <%= f.text_field :post_text %><br>
-        <%= f.label :動画 %><br>
-        <%= f.file_field :video, :accept => 'video/*' %><br>
-        <%= f.label :画像%><br>
-        <%= f.file_field :image %><br>
-        <%= f.submit %>
-        <%= f.hidden_field :game_id, :value => @game.id %>
-    </div>
-    <% end %>
+   <%=render "post" %>
     <div classs="row">
         <div class="col-md-6">
             <%= @game.title %>
             <%= @game.introduction %>
             <% if @game.image? %>
-;
+
             <%= image_tag @game.image.thumb.url,width: "100px", height: "100px" %>
 
             <% end %>
@@ -41,7 +30,8 @@
 
 <%# <% if current_user.favorites %>
 <%= render "like" %>
-
+<hr>
+<%= render "posts/like" %>
 
 
 

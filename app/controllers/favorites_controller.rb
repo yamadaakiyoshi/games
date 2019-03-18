@@ -5,6 +5,7 @@ class FavoritesController < ApplicationController
 
 
   def game_favorite
+
     # //create
     favorite = current_user.favorites.new(game_id: @game.id)
     favorite.save
@@ -17,11 +18,13 @@ class FavoritesController < ApplicationController
   end
 
   def post_favorite
+
     favorite = current_user.favorites.new(post_id: @post.id)
     favorite.save
   end
 
    def post_unfavorite
+
     favorite = current_user.favorites.find_by(post_id: @post.id)
     favorite.destroy
   end
@@ -31,12 +34,12 @@ class FavoritesController < ApplicationController
 
   def set_game
     @game = Game.find(params[:game_id])
-    @id_name = "#favorite-link-#{@game.id}"
+    @id_name = "#favorite-game-#{@game.id}"
   end
 
     def set_post
     @post = Post.find(params[:post_id])
-    @id_name = "#favorite-link-#{@post.id}"
+    @id_name = "#favorite-post-#{@post.id}"
   end
 
 end
