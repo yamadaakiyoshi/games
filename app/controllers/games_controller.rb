@@ -12,6 +12,8 @@ class GamesController < ApplicationController
     @new_post = Post.new
     @post = Post.find(params[:id])
     @posts = Post.all
+    @postcoment = Postcoment.new
+    @postcoments = Postcoment.all
   end
 
 

@@ -1,5 +1,18 @@
 <div class="container">
-   <%=render "post" %>
+
+    <%= form_for(@new_post, url: games_path) do |f| %>
+    <div class="field">
+        <%= f.label :タイトル %><br>
+        <%= f.text_field :post_text %><br>
+        <%= f.label :動画 %><br>
+        <%= f.file_field :video, :accept => 'video/*' %><br>
+        <%= f.label :画像%><br>
+        <%= f.file_field :image %><br>
+        <%= f.submit %>
+        <%= f.hidden_field :game_id, :value => @game.id %>
+    </div>
+    <% end %>
+
     <div classs="row">
         <div class="col-md-6">
             <%= @game.title %>
@@ -20,8 +33,24 @@
             <% if p.image.present? %>
             <%= image_tag p.image.thumb.url,width: "100px", height: "100px" %>
             <% end %>
+            <%= form_for [p ,@postcoment] do |o| %>
+            <div class="field">
+                <%= o.label :本文 %><br>
+                <%= o.text_field :content %><br>
+                <%= o.submit %>
+            </div>
+            <% end %>
             <% end %>
         </div>
+
+
+
+
+
+        <% @postcoments.each do |postcoment| %>
+        <%= postcoment.content %>
+        　　
+        <% end %>
 
     </div>
 </div>
@@ -49,4 +78,3 @@
         font-weight: bold;
     }
 </style>
-
