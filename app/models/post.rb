@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
-    has_many :postcoments,dependent: :delete_all
-    has_many :favorites,dependent: :delete_all
+    has_many :postcoments,dependent: :destroy
+    has_many :favorites,dependent: :destroy
+    has_many :liking_users, through: :likes, source: :user
     belongs_to :user
     mount_uploader :video, VideoUploader
     mount_uploader :image, ImageUploader

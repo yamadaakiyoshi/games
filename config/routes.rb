@@ -36,6 +36,12 @@ resources :users
     resource :favorites,only:[:create,:destroy]
     resource :postcoments,only:[:create,:destroy]
   end
+  post   '/favorites/:game_id' => 'favorites#game_favorite',   as: 'game_favorite' #いいね
+  delete '/favorites/:game_id' => 'favorites#game_unfavorite', as: 'game_unfavorite' #いいね取り消し
+
+  post   '/favorite/:post_id' => 'favorites#post_favorite',   as: 'post_favorite' #いいね
+  delete '/favorite/:post_id' => 'favorites#post_unfavorite',  as: 'post_unfavorite' #いいね取り消し
+
 
 
 
