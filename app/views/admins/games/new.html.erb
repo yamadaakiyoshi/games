@@ -1,0 +1,15 @@
+<%= form_for(@game, url: admins_games_path) do |f| %>
+
+<%= f.collection_select :genre_id, Genre.all, :id, :genre_name %>
+<%= f.label :title %>
+<%= f.text_field :title %>
+
+
+<%= f.label :introduction %>
+<%= f.text_area :introduction %>
+
+
+<%= f.label :image %>
+<%= f.file_field :image %>
+<%= f.submit%>
+<% end %>

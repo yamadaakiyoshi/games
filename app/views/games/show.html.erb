@@ -1,2 +1,52 @@
-<h1>Games#show</h1>
-<p>Find me in app/views/games/show.html.erb</p>
+<div class="container">
+   <%=render "post" %>
+    <div classs="row">
+        <div class="col-md-6">
+            <%= @game.title %>
+            <%= @game.introduction %>
+            <% if @game.image? %>
+
+            <%= image_tag @game.image.thumb.url,width: "100px", height: "100px" %>
+
+            <% end %>
+        </div>
+        <div class="col-md-6">
+
+            <% @game.posts.each do |p| %>
+            <% if p.video.present? %>
+            <%= video_tag p.video.url, width: "200px", height: "100px", 
+                    controls: true, autobuffer: true %>
+            <% end %>
+            <% if p.image.present? %>
+            <%= image_tag p.image.thumb.url,width: "100px", height: "100px" %>
+            <% end %>
+            <% end %>
+        </div>
+
+    </div>
+</div>
+
+
+
+<%# <% if current_user.favorites %>
+<%= render "like" %>
+<hr>
+<%= render "posts/like" %>
+
+
+
+
+
+<style>
+    .iine__button {
+        background: linear-gradient(to right, #feb400, #FFE300);
+        line-height: 42px;
+        color: #6d3701;
+        font-size: 14px;
+        display: inline-block;
+        padding: 0 18px;
+        border-radius: 100px;
+        font-weight: bold;
+    }
+</style>
+

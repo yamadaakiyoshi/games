@@ -1,2 +1,13 @@
-<h1>Games#index</h1>
-<p>Find me in app/views/games/index.html.erb</p>
+<% @games.each do |game| %>
+<%= game.genre.genre_name %>
+<% if game.image? %>
+　　
+<%= image_tag game.image.thumb.url %>
+　
+<% else %>
+　　
+<p>aaaa</p>
+　
+<% end %>
+
+<% end %>
