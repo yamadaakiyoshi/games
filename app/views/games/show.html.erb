@@ -28,17 +28,21 @@
             <% @game.posts.each do |p| %>
             <% if p.video.present? %>
             <%= video_tag p.video.url, width: "200px", height: "100px", 
-                    controls: true, autobuffer: true %>
+                        controls: true, autobuffer: true %>
             <% end %>
             <% if p.image.present? %>
             <%= image_tag p.image.thumb.url,width: "100px", height: "100px" %>
             <% end %>
+            <%= render "posts/like", post: p %>
+            <%= link_to "削除", post_path(game_id: p.game_id), method: :delete, class: "btn btn-danger" %>
+
             <%= form_for [p ,@postcoment] do |o| %>
             <div class="field">
                 <%= o.label :本文 %><br>
                 <%= o.text_field :content %><br>
                 <%= o.submit %>
             </div>
+
             <% end %>
             <% end %>
         </div>
@@ -49,6 +53,8 @@
 
         <% @postcoments.each do |postcoment| %>
         <%= postcoment.content %>
+        <%= link_to "削除", post_postcoments_path(post_id: postcoment.post_id, id: postcoment.id), method: :delete, class: "btn btn-danger" %>
+
         　　
         <% end %>
 
@@ -60,7 +66,7 @@
 <%# <% if current_user.favorites %>
 <%= render "like" %>
 <hr>
-<%= render "posts/like" %>
+
 
 
 

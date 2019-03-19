@@ -11,9 +11,17 @@ class PostcomentsController < ApplicationController
       render "show"
     end   
    end
+
+    def destroy
+    post =  Post.find(params[:post_id])
+    postcoment = post.postcoments.find_by(post_id: post.id)
+    postcoment.destroy
+    redirect_to game_path(post.game_id)
+  end
+
  
    private
   def postcoment_params
-    params.require(:postcoment).permit(:content)
+    params.require(:postcoment).permit (:content)
   end
 end
