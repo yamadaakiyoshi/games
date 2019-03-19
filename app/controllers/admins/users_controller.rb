@@ -10,5 +10,6 @@ class Admins::UsersController < ApplicationController
   end
 
   def edit
+    
   end
 end

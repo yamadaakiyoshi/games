@@ -1,2 +1,49 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col-sm-7">
+            <%= image_tag @user.image.thumb.url,width: "100px", height: "100px" %>
+
+            <%=form_for(@user) do |f| %>
+            <%= f.label :image %>
+            <%= f.file_field :image %>
+
+        </div>
+        <div class="col-sm-5">
+            <h2 class="title_signup_display">ユーザー編集</h2>
+
+            <div class="form-group mt-5">
+                <div class="field">
+                    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname",placeholder: "ニックネーム", class: "form-control" %>
+                </div>
+            </div>
+
+            <div class="form-group mt-4">
+                <div class="field">
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "メールアドレス", class: "form-control" %>
+                </div>
+            </div>
+
+            <div class="form-group mt-4">
+                <div class="field">
+                    <%= f.password_field :password, autocomplete: "new-password",placeholder: "パスワード ※#{@minimum_password_length}文字以上", class: "form-control" %>
+                </div>
+            </div>
+
+            <div class="form-group mt-4">
+                <div class="field">
+                    <%= f.password_field :password_confirmation, autocomplete: "new-password",placeholder: "パスワード確認", class: "form-control" %>
+                </div>
+            </div>
+
+            <div class="actions">
+                <div align="center">
+                    <%= f.submit "登録", class:"btn" %>
+                </div>
+            </div>
+            <% end %>
+        </div>
+
+    </div>
+</div>
+</div>
