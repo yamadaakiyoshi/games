@@ -2,11 +2,15 @@
 
     <div class="row">
         <div class="col-sm-7">
-            <%= image_tag @user.image.thumb.url,width: "100px", height: "100px" %>
+            <% if current_user.images.present? %>
+            <%  @user.images.each do |u| %>
+            <%= image_tag u.thumb.url,width: "100px", height: "100px" %>
+            <% end %>
+            <% end %>
 
             <%=form_for(@user) do |f| %>
             <%= f.label :image %>
-            <%= f.file_field :image %>
+            <%= f.file_field :images  %>
 
         </div>
         <div class="col-sm-5">

@@ -5,7 +5,11 @@
     <div class="row">
         <div class="col-sm-3">
             <div align="center">
-                <%= image_tag @user.image.thumb.url,width: "100px", height: "100px" %>
+                <% if current_user.images.present? %>
+                <% current_user.images.each do |u| %>
+                <%= image_tag u.thumb.url,width: "100px", height: "100px" %>
+                <% end %>
+                <% end %>
 
             </div>
             <div class="name_display">
