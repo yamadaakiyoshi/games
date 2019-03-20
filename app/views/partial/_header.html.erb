@@ -11,9 +11,18 @@
 
             </div>
 
+
+
             <div class="menu">
                 <ul>
+                    <li>
+                        <%=form_tag games_path, method: :get do %>
+                        <%=text_field_tag :search, params[:search] %>
+                        <%=submit_tag "検索",class: "btn btn-banger"%>
+                        <% end %>
+                    </li>
                     <% if user_signed_in? %>
+
                     <li>
                         <%= link_to "マイページ", user_path(current_user) %>
                     </li>
@@ -24,6 +33,12 @@
                         <%= link_to "ログアウト", destroy_user_session_path, method: :delete%>
                     </li>
                     <% else %>
+                    <li>
+                        <%=form_tag games_path, method: :get do %>
+                        <%=text_field_tag :search, params[:search] %>
+                        <%=submit_tag "検索",class: "btn btn-banger"%>
+                        <% end %>
+                    </li>
                     <li>
                         <%= link_to "会員登録", new_user_registration_path %>
                     </li>

@@ -1,13 +1,16 @@
 <% @games.each do |game| %>
-<%= game.genre.genre_name %>
-<% if game.image? %>
-　　
-<%= image_tag game.image.thumb.url %>
-　
-<% else %>
-　　
-<p>aaaa</p>
-　
+
+<%= link_to game_path(game.id) do %>
+<%=  game.title %>
 <% end %>
+
+<%= link_to game_path(game.id) do %>
+<%= image_tag game.image.thumb.url %>
+<% end %>
+
+<%= game.introduction %>
+
+<%= game.genre.genre_name %>
+
 
 <% end %>
