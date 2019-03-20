@@ -20,3 +20,17 @@
 
             <%= link_to "編集",edit_user_path(@user.id), class: "btn btn-success edit_btn" %>
             <%= link_to "退会", user_registration_path, method: :delete, class: "btn btn-success edit_btn" %>
+
+            <h2>お気に入り一覧</h2>
+            <div class="favorite-list">
+                <% if @favorite.count==0 %>
+                <h4>現在登録がありません</h4>
+                <% else %>
+                <% @favorite.each do |f| %>
+                <div class="new-list-content">
+                    <%= link_to game_path(f.id) do %>
+                    <%= image_tag f.image.thumb.url  %>
+                    <% end %>
+                </div>
+                <% end %>
+                <% end %>

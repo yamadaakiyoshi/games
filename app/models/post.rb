@@ -5,6 +5,6 @@ class Post < ApplicationRecord
     belongs_to :user
     belongs_to :game
     mount_uploader :video, VideoUploader
-    mount_uploader :image, ImageUploader
-    validates :post_text, :presence => true
+    # mount_uploader :image, ImageUploader
+    # validates :post_text, :presence => true
 end
