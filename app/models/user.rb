@@ -11,7 +11,8 @@ class User < ApplicationRecord
         #  has_many :favorite_relation, dependent: :destroy
          has_many :posts,dependent: :destroy
          has_many :postcoments,dependent: :destroy
-         mount_uploader :image, ImageUploader
+         mount_uploaders :images, ImageUploader
+         serialize :image,JSON
          acts_as_paranoid
          
 end

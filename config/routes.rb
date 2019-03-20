@@ -33,7 +33,6 @@ resources :users
   end
 
   resources :posts do
-    resource :favorites,only:[:create,:destroy]
     resource :postcoments,only:[:create,:destroy]
   end
   post   '/favorites/:game_id' => 'favorites#game_favorite',   as: 'game_favorite' #いいね

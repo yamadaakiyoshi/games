@@ -10,8 +10,10 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @games = Game.all
     @new_post = Post.new
-    @post = Post.find(params[:id])
+    # @post = Post.find(params[:id])
     @posts = Post.all
+    @postcoment = Postcoment.new
+    @postcoments = Postcoment.all
   end
 
 
