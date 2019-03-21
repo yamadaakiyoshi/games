@@ -26,10 +26,10 @@ end
 resources :users 
 
 
-
+User.find(params["id"])
 
   resources :games do
-  resource :favorites,only:[:create,:destroy]
+  resource :favorites, only:[:create,:destroy]
   end
 
   resources :posts do
