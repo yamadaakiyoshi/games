@@ -4,6 +4,7 @@ class Admins::UsersController < ApplicationController
   end
 
   def index
+     @games = Game.search(params[:search])
   end
 
   def show

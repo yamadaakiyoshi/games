@@ -1,40 +1,53 @@
-<div class="container">
+<div class="hopper">
 
     <%= form_for(@new_post, url: games_path) do |f| %>
     <div class="field">
         <%= f.label :タイトル %><br>
         <%= f.text_field :post_text %><br>
-        <%= f.label :動画 %><br>
-        <%= f.file_field :video, :accept => 'video/*' %><br>
-        <%= f.label :画像%><br>
-        <%= f.file_field :image %><br>
-        <%= f.submit %>
+
+        <%= f.label :画像、動画 %><br>
+        <%= f.file_field :video, accept: 'image/jpeg,image/gif,image/png,video/*' %>
+
+
+
         <%= f.hidden_field :game_id, :value => @game.id %>
+        <%= f.submit %>
     </div>
     <% end %>
 
-    <div classs="row">
-        <div class="col-md-6">
+    <div class="row">
+        <div class="col-sm-1">
+        </div>
+
+
+
+        <div class="col-sm-3">
             <%= @game.title %>
             <%= @game.introduction %>
             <% if @game.image? %>
-
-            <%= image_tag @game.image.thumb.url,width: "100px", height: "100px" %>
-
+            <%= image_tag @game.image.thumb.url  %>
+            <%= render "like" %>
             <% end %>
         </div>
-        <div class="col-md-6">
+        <div class="col-sm-1">
+        </div>
+
+        <div class="col-sm-7">
 
             <% @game.posts.each do |p| %>
-            <% if p.video.present? %>
-            <%= video_tag p.video.url, width: "200px", height: "100px", 
-                        controls: true, autobuffer: true %>
+
+            <% if p.video? %>
+            <%# <% if micropost.picture.file.content_type.include?('image/') %>
+            <% if p.video.file.content_type.include?('image/') %>
+            <%= image_tag p.video.url %>
+            <% else %>
+            <%= video_tag p.video.url, width: "60%", 
+                  controls: true, autobuffer: true %>
             <% end %>
-            <% if p.image.present? %>
-            <%= image_tag p.image.thumb.url,width: "100px", height: "100px" %>
             <% end %>
             <%= render "posts/like", post: p %>
             <%= link_to "削除", post_path(game_id: p.game_id), method: :delete, class: "btn btn-danger" %>
+
 
             <%= form_for [p ,@postcoment] do |o| %>
             <div class="field">
@@ -42,20 +55,14 @@
                 <%= o.text_field :content %><br>
                 <%= o.submit %>
             </div>
-
             <% end %>
             <% end %>
         </div>
-
-
-
-
 
         <% @postcoments.each do |postcoment| %>
         <%= postcoment.content %>
         <%= link_to "削除", post_postcoments_path(post_id: postcoment.post_id, id: postcoment.id), method: :delete, class: "btn btn-danger" %>
 
-        　　
         <% end %>
 
     </div>
@@ -64,8 +71,6 @@
 
 
 <%# <% if current_user.favorites %>
-<%= render "like" %>
-<hr>
 
 
 
@@ -73,6 +78,11 @@
 
 
 <style>
+    .hopper {
+        width: 90%;
+        margin: 0 auto;
+    }
+
     .iine__button {
         background: linear-gradient(to right, #feb400, #FFE300);
         line-height: 42px;

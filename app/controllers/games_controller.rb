@@ -19,11 +19,12 @@ class GamesController < ApplicationController
 
   def create
      post = Post.new(post_params)
-    post.user_id = current_user.id
-    binding.pry
+     binding.pry
+     post.user_id = current_user.id
     if  post.save
-      redirect_to root_path
+      redirect_to game_path(post.game.id)
     else
+      
       render "show"
     end
    
@@ -33,6 +34,6 @@ class GamesController < ApplicationController
   end
   private
   def post_params
-    params.require(:post).permit(:video,:image, :post_text, :game_id)
+    params.require(:post).permit(:video, :image, :post_text, :game_id)
   end
 end
