@@ -1,29 +1,36 @@
-<% @games.each do |game| %>
-
-<%= link_to game_path(game.id) do %>
-<%=  game.title %>
-<% end %>
-
-<%= link_to game_path(game.id) do %>
-<%= image_tag game.image.thumb.url %>
-<% end %>
-
-<%= game.introduction %>
-
-<%= game.genre.genre_name %>
-
-
-<% end %>
-
-
 <div class="container">
-    <div class="row">
-        <div class="col-sm-6">
-            うんこ
-        </div>
-        <div class="col-sm-6">
-            ちんこ
+
+    <% @games.each do |game| %>
+    <div class="row games_box">
+
+        <div class="col-sm-4">
+            <div class="games_index_title">
+                <%= link_to game_path(game.id) do %>
+                <%=  game.title %>
+                <% end %>
+            </div>
+
+
+            <div class="games_index_image">
+                <%= link_to game_path(game.id) do %>
+                <%= image_tag game.image.thumb.url %>
+                <% end %>
+            </div>
         </div>
 
+
+        <div class="col-sm-8">
+            <div class="games_index_introduction">
+                <p>PLAYERUNKNOWN‘S BATTLEGROUNDSはバトルロイヤルゲームです。孤島で100名ものプレイヤーが様々な武器と知恵を使って、最後の一人として生き残る瞬間まで戦います。
+                    プレイヤーは段々狭くなる安全地帯内で、ランダムに配置されている武器や車両、装備アイテムを駆使して“最後の一人”になるために命をかけた緊張感あふれる荘厳な戦いを勝ち残ります。</p>
+                <%# <%= game.introduction %>
+            </div>
+
+            <div class="games_index_genre">
+                ジャンル：<%= game.genre.genre_name %>
+            </div>
+        </div>
     </div>
+    <% end %>
+
 </div>
