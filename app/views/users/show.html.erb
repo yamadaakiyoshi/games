@@ -1,36 +1,65 @@
 <div class="container">
-    <div>
-        <h1>マイページ</h1>
-    </div>
+
+
     <div class="row">
-        <div class="col-sm-3">
+
+        <div class="col-sm-3 mt-5">
+            <div align="center">
+                <h1>マイページ</h1>
+            </div>
             <div align="center">
                 <% if current_user.image.present? %>
                 <%= image_tag current_user.image.thumb.url,width: "180px", height: "180px" %>
                 <% end %>
 
             </div>
+
             <div class="name_display">
                 <div align="center">
                     <%= @user.nickname %>
                 </div>
             </div>
+            <div align="center">
+                <%= link_to "編集",edit_user_path(@user.id), class: "btn btn-outline-success edit_btn" %>
+                <%= link_to "退会", user_registration_path, method: :delete, class: "btn btn-outline-danger edit_btn" %>
+            </div>
+        </div>
 
 
 
-            <%= link_to "編集",edit_user_path(@user.id), class: "btn btn-success edit_btn" %>
-            <%= link_to "退会", user_registration_path, method: :delete, class: "btn btn-success edit_btn" %>
 
-            <h2>お気に入り一覧</h2>
+        <div class="col-sm-9 mt-5">
+            <h3>お気に入り一覧</h3>
             <div class="favorite-list">
                 <% if @favorite.count==0 %>
-                <h4>現在登録がありません</h4>
+                <h4>お気に入りがありません</h4>
                 <% else %>
-                <% @favorite.each do |f| %>
-                <div class="new-list-content">
-                    <%= link_to game_path(f.id) do %>
-                    <%= image_tag f.image.thumb.url  %>
+                <ul class="slider">
+                    <% 5.times.each do %>
+                    <% @favorite.each do |f| %>
+                    <li>
+                        <%= link_to game_path(f.id) do %>
+                        <%= image_tag f.image.thumb.url,width: "160px", height: "220px"%>
+                        <% end %>
+                    </li>
                     <% end %>
-                </div>
+                    <% end %>
+                </ul>
+
                 <% end %>
-                <% end %>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+</div>
+<style>
+    .slider {
+        list-style: none;
+    }
+</style>
+<script>
+
+</script>
