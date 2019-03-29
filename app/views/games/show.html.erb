@@ -82,9 +82,11 @@
                     <hr />
                     <% p.postcoments.each do |postcoment| %>
                     <div class="coment-bottom">
+			<% if current_user.image.attached? %>
                         <div class="game-show-user-imag">
                             <%= image_tag current_user.image,width: "50px", height: "50px" %>
                         </div>
+			<% end %>
 
                         <span class="game-postcoment"><%= postcoment.content %></span><br>
                     </div>
