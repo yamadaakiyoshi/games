@@ -1,72 +1,115 @@
-<div class="hopper">
-
-    <%= form_for(@new_post, url: games_path) do |f| %>
-    <div class="field">
-        <%= f.label :タイトル %><br>
-        <%= f.text_field :post_text %><br>
-
-        <%= f.label :画像、動画 %><br>
-        <%= f.file_field :video, accept: 'image/jpeg,image/gif,image/png,video/*' %>
+<div class="back">
+    <div class="hopper">
 
 
 
-        <%= f.hidden_field :game_id, :value => @game.id %>
-        <%= f.submit %>
-    </div>
-    <% end %>
-
-    <div class="row">
-        <div class="col-sm-1">
-        </div>
-
-
-
-        <div class="col-sm-3">
-            <%= @game.title %>
-            <%= @game.introduction %>
-            <% if @game.image? %>
-            <%= image_tag @game.image.thumb.url  %>
-            <%= render "like" %>
-            <% end %>
-        </div>
-        <div class="col-sm-1">
-        </div>
-
-        <div class="col-sm-7">
-
-            <% @game.posts.each do |p| %>
-
-            <% if p.video? %>
-            <% if p.video.file.content_type.include?('image/') %>
-            <%= image_tag p.video.url %>
-            <% else %>
-            <%= video_tag p.video.url, width: "60%", 
-                  controls: true, autobuffer: true %>
-            <% end %>
-            <% end %>
-            <%= p.post_text %>
-            <%= render "posts/like", post: p %>
-            <%= link_to "削除", post_path(game_id: p.game_id), method: :delete, class: "btn btn-danger" %>
-
-
-            <%= form_for [p ,@postcoment] do |o| %>
-            <div class="field">
-                <%= o.label :本文 %><br>
-                <%= o.text_field :content %><br>
-                <%= o.submit %>
+        <div class="row">
+            <div class="col-sm-1">
             </div>
-            <% end %>
-            <% end %>
+
+
+
+            <div class="col-sm-3 mt-5">
+                <%= @game.title %>
+                <%= @game.introduction %>
+                <% if @game.image? %>
+                <%= image_tag @game.image.thumb.url  %>
+                <%= render "like" %>
+                <% end %>
+                <%= form_for(@new_post, url: games_path) do |f| %>
+                <div class="field">
+                    <%= f.label :タイトル %><br>
+                    <%= f.text_field :post_text %><br>
+
+                    <%= f.label :画像、動画 %><br>
+                    <%= f.file_field :video, accept: 'image/jpeg,image/gif,image/png,video/*' %>
+
+
+
+                    <%= f.hidden_field :game_id, :value => @game.id %>
+                    <%= f.submit %>
+                </div>
+                <% end %>
+            </div>
+            <div class="col-sm-1">
+            </div>
+
+            <div class="col-sm-7 mt-5">
+
+                <% @game.posts.each do |p| %>
+                <div class="card game-show-posts mb-5">
+
+                    <% if p.video? %>
+                    <% if p.video.file.content_type.include?('image/') %>
+                    <%= image_tag p.video.url, class: "card-img-top game-show-img" %>
+
+                    <% else %>
+
+                    <%= video_tag p.video.url, 
+                          controls: true, autobuffer: true,class: "card-img-top game-show-img" %>
+                    <% end %>
+                    <% end %>
+
+
+                    <%# <div class="card-body "></div> %>
+                    <div class="game-user-name">
+                        <%= p.user.nickname %>
+                    </div>
+                    <div class="post-body">
+                        <span class="game-show-user-imag">
+                            <%= image_tag current_user.image.thumb.url,width: "50px", height: "50px" %>
+                        </span>
+
+                        <% if p.video.file.nil? %>
+
+                        <span class="card-text trigger game-post-text"> <%= p.post_text.truncate(100) %>
+                        </span>
+                        <% else %>
+                        <span class="card-text trigger game-post-text"> <%= p.post_text.truncate(27) %>
+                        </span>
+                        <% end %>
+                    </div>
+
+                    <div class="post-bottom">
+
+                        <%= render "posts/like", post: p %>
+
+
+                        <%= link_to "削除", post_path(game_id: p.game_id), method: :delete, class: "btn btn-danger" %>
+                    </div>
+                    <hr />
+                    <% p.postcoments.each do |postcoment| %>
+                    <div class="game-show-user-imag">
+                        <%= image_tag current_user.image.thumb.url,width: "50px", height: "50px" %>
+                    </div>
+                    <span class="game-postcoment"><%= postcoment.content %></span><br>
+                    <div>
+                        <%= link_to "削除", post_postcoments_path(post_id: postcoment.post_id, id: postcoment.id), method: :delete, class: "btn btn-danger" %>
+                    </div>
+                    <% end %>
+                    <%= form_for [p ,@postcoment] do |o| %>
+                    <div class="field">
+                        <%= o.label :本文 %><br>
+                        <%= o.text_field :content %><br>
+                        <%= o.submit %>
+                    </div>
+
+                    <% end %>
+                </div>
+
+                <% end %>
+
+
+            </div>
+
         </div>
 
-        <% @postcoments.each do |postcoment| %>
-        <%= postcoment.content %>
-        <%= link_to "削除", post_postcoments_path(post_id: postcoment.post_id, id: postcoment.id), method: :delete, class: "btn btn-danger" %>
 
-        <% end %>
 
     </div>
+
 </div>
+
 
 
 
@@ -83,8 +126,23 @@
         margin: 0 auto;
     }
 
+    .game-postcoment {
+        color: black;
+    }
+
     .iine__button {
         background: linear-gradient(to right, #feb400, #FFE300);
+        line-height: 42px;
+        color: #6d3701;
+        font-size: 14px;
+        display: inline-block;
+        padding: 0 18px;
+        border-radius: 100px;
+        font-weight: bold;
+    }
+
+    .iine__button1 {
+        /* background: linear-gradient(to right, #feb400, #FFE300); */
         line-height: 42px;
         color: #6d3701;
         font-size: 14px;

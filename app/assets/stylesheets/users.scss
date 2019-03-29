@@ -46,26 +46,24 @@
     list-style: none;
 }
 
-.unko {
-    height: 24rem;
-}
-
-.card {
+.user-show-posts {
     width: 23rem;
     height: 24rem;
     float: left;
     margin-left: 2%;
 }
 
-.card-img-top {
+.user-show-img {
     margin-left: 2%;
     margin-top: 2%;
     width: 96%;
     height: 240px;
 }
 
-.card-text {
-    font-size: 35px
+.trigger {
+    font-size: 35px;
+    font-weight: 400;
+    color: black;
 }
 
 .back {
@@ -73,9 +71,7 @@
     color: white;
 }
 
-.card-text {
-    color: black;
-}
+
 
 .lb-dataContainer {
     height: 200px;
@@ -90,6 +86,51 @@
     white-space: normal;
     display: block;
 }
+
+.game-show-posts {
+    width: 35rem;
+    // height: 40rem;
+    float: left;
+    margin-left: 2%;
+}
+
+.game-show-img {
+    margin-left: 2%;
+    margin-top: 2%;
+    width: 96%;
+    height: 300px;
+}
+
+.game-show-user-imag {
+    padding-right: 20px;
+
+    img {
+        margin-left: 2%;
+        margin-top: 2%;
+        border-radius: 25px;
+    }
+}
+
+.game-user-name {
+    color: black;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.post-bottom {
+    padding-top: 4%;
+    display: flex;
+    padding-left: 75%;
+}
+
+
+.game-postcoment {
+    color: black;
+}
+
+// .post-delete {
+//     float: right;
+// }
 
 // .favorite-list {
 //     width: 100%;

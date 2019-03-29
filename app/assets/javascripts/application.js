@@ -16,7 +16,6 @@
 //= require bootstrap-sprockets
 //= require_tree .
 //= require toastr
-//= require lightcase
 
 $(function () {
     toastr.options.timeOut = 100;
