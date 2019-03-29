@@ -14,7 +14,38 @@
 //= require activestorage
 //= require jquery
 //= require bootstrap-sprockets
- //= require_tree .
+//= require_tree .
+//= require toastr
 
+$(function () {
+    toastr.options.timeOut = 100;
+});
 
+$(function () {
 
+    $('.slider').slick({
+
+        centerMode: true,
+        centerPadding: '60px',
+        slidesToShow: 3,
+        responsive: [{
+                breakpoint: 768,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 3
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 1
+                }
+            }
+        ]
+    });
+})

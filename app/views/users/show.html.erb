@@ -1,36 +1,168 @@
-<div class="container">
-    <div>
-        <h1>マイページ</h1>
-    </div>
-    <div class="row">
-        <div class="col-sm-3">
-            <div align="center">
-                <% if current_user.image.present? %>
-                <%= image_tag current_user.image.thumb.url,width: "100px", height: "100px" %>
-                <% end %>
+<div class="back">
+    <div class="container">
 
-            </div>
-            <div class="name_display">
+
+        <div class="row">
+
+            <div class="col-sm-3 mt-5">
                 <div align="center">
-                    <%= @user.nickname %>
+                    <h1>マイページ</h1>
+                </div>
+                <div align="center">
+                    <% if current_user.image.attached? %>
+                    <%= image_tag current_user.image,width: "180px", height: "180px" %>
+                    <% end %>
+
+                </div>
+
+                <div class="name_display">
+                    <div align="center">
+                        <%= @user.nickname %>
+                    </div>
+                </div>
+                <div align="center">
+                    <%= link_to "編集",edit_user_path(@user.id), class: "btn btn-outline-success edit_btn" %>
+                    <%= link_to "退会", user_registration_path, method: :delete, class: "btn btn-outline-danger edit_btn" %>
                 </div>
             </div>
 
 
 
-            <%= link_to "編集",edit_user_path(@user.id), class: "btn btn-success edit_btn" %>
-            <%= link_to "退会", user_registration_path, method: :delete, class: "btn btn-success edit_btn" %>
 
-            <h2>お気に入り一覧</h2>
-            <div class="favorite-list">
-                <% if @favorite.count==0 %>
-                <h4>現在登録がありません</h4>
-                <% else %>
-                <% @favorite.each do |f| %>
-                <div class="new-list-content">
-                    <%= link_to game_path(f.id) do %>
-                    <%= image_tag f.image.thumb.url  %>
+            <div class="col-sm-9 mt-5">
+                <h3>お気に入り一覧</h3>
+                <div class="favorite-list">
+                    <% if @favorite.count==0 %>
+                    <h4>お気に入りがありません</h4>
+                    <% else %>
+                    <ul class="slider">
+                        <% 5.times.each do %>
+                        <% @favorite.each do |f| %>
+                        <li>
+                            <%= link_to game_path(f.id) do %>
+                            <%= image_tag f.image.thumb.url,width: "160px", height: "220px"%>
+                            <% end %>
+                        </li>
+                        <% end %>
+                        <% end %>
+                    </ul>
+
                     <% end %>
                 </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+
+            <% @posts.each do |p| %>
+            <div class="card user-show-posts mb-5">
+                <% if p.video? %>
+                <% if p.video.file.content_type.include?('image/') %>
+                <%= image_tag p.video.url, class: "card-img-top user-show-img" %>
+                </a>
+                <% else %>
+
+                <%= video_tag p.video.url, 
+                          controls: true, autobuffer: true,class: "card-img-top user-show-img" %>
                 <% end %>
                 <% end %>
+
+                <div class="card-body ">
+
+
+                    <div class="overlay" id="overlay"></div>
+                    <div class="modal" id="modal">
+                        <button class="modal-close-btn" id="close-btn"><i class="fa fa-times" title="閉じる"></i></button>
+                        <span class="modal_text"></span>
+                    </div>
+                    <% if p.video.file.nil? %>
+                    <span class="card-text trigger"> <%= p.post_text.truncate(100) %>
+                    </span>
+                    <% else %>
+                    <span class="card-text trigger"> <%= p.post_text.truncate(27) %>
+                    </span>
+                    <% end %>
+                    <div>
+                        <%= link_to "削除", post_path(game_id: p.game_id), method: :delete, class: "btn btn-danger" %>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <% end %>
+
+
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    $('.trigger').on('click', function () {
+        var docs = $(this).html();
+        $(".modal_text").html(docs);
+        // $('#overlay').fadeIn();
+        $('#modal').fadeIn();
+    });
+
+    $('#close-btn').on('click', function () {
+        $('#overlay').fadeOut();
+        $('#modal').fadeOut();
+    });
+    $('#overlay').on('click', function () {
+        $('#overlay').fadeOut();
+        $('#modal').fadeOut();
+    });
+</script>
+<style>
+    .modal_text {}
+
+    .trigger {
+        cursor: pointer;
+    }
+
+    .modal {
+        display: none;
+        font-size: 30px;
+        top: 50%;
+        left: 50%;
+        width: 500px;
+        height: 300px;
+        transform: translate(-50%, -50%);
+        background: black;
+        border-radius: 4px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-close-btn {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 20px;
+    }
+
+    /** Overlay */
+    /* .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        width: 100%;
+        height: 100%;
+        background-color: red;
+    } */
+</style>

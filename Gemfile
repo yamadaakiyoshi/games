@@ -30,6 +30,9 @@ gem 'devise'
 gem 'kaminari', '~> 0.17.0'
 gem 'carrierwave'
 gem 'paranoia'
+gem 'toastr-rails'
+
+
 
 gem 'rmagick', '~> 2.16'
 
