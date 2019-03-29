@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+   before_action :authenticate_user! 
  before_action :set_game, only: [:game_favorite,:game_unfavorite]
  before_action :set_post, only: [:post_favorite,:post_unfavorite]
 

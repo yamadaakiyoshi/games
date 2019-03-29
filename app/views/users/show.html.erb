@@ -9,8 +9,8 @@
                     <h1>マイページ</h1>
                 </div>
                 <div align="center">
-                    <% if current_user.image.present? %>
-                    <%= image_tag current_user.image.thumb.url,width: "180px", height: "180px" %>
+                    <% if current_user.image.attached? %>
+                    <%= image_tag current_user.image,width: "180px", height: "180px" %>
                     <% end %>
 
                 </div>

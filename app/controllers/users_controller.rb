@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user! 
   def index
   end
 
@@ -14,7 +15,6 @@ end
 
   def edit
     @user = current_user
-     @user.image.cache! unless @user.image.blank?
   end
   
   def update
@@ -25,7 +25,7 @@ end
 
   private
     def user_params
-      params.require(:user).permit(:nickname, :email, :deleted_at, :image, :image_cache)
+      params.require(:user).permit(:nickname, :email, :deleted_at, :image)
     end
 
 end

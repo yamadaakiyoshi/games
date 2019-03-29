@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+   before_action :authenticate_user! 
 
 def destroy
     # game =  Game.find(params[:game_id])

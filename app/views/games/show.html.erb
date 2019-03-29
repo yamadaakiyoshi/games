@@ -57,10 +57,10 @@
                     </div>
                     <div class="post-body">
                         <span class="game-show-user-imag">
-                            <% if p.user.image.present? %>
-                            <%= image_tag p.user.image.thumb.url,width: "50px", height: "50px" %>
+                            <% if p.user.image.attached? %>
+                            <%= image_tag p.user.image,width: "50px", height: "50px" %>
                             <% else %>
-                            <%= image_tag "no-image.png"%>
+                            <%= image_tag "no-image.png",width: "50px", height: "50px" %>
                             <% end %>
                         </span>
 
@@ -83,7 +83,7 @@
                     <% p.postcoments.each do |postcoment| %>
                     <div class="coment-bottom">
                         <div class="game-show-user-imag">
-                            <%= image_tag current_user.image.thumb.url,width: "50px", height: "50px" %>
+                            <%= image_tag current_user.image,width: "50px", height: "50px" %>
                         </div>
 
                         <span class="game-postcoment"><%= postcoment.content %></span><br>
