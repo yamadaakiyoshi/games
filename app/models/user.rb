@@ -16,5 +16,5 @@ class User < ApplicationRecord
          has_many :postcoments,dependent: :destroy
          mount_uploader :image, ImageUploader
          acts_as_paranoid
-         
+         has_one_attached :image
 end

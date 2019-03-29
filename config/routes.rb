@@ -9,8 +9,7 @@ Rails.application.routes.draw do
   get 'users/edit'
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
-  passwords:     'admins/passwords',
-  registrations: 'admins/registrations'
+  passwords:     'admins/passwords'
 }
 devise_for :users, controllers: {
   sessions:      'users/sessions',
@@ -25,8 +24,6 @@ end
 
 resources :users 
 
-
-User.find(params["id"])
 
   resources :games do
   resource :favorites, only:[:create,:destroy]

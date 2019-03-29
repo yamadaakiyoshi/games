@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user! 
   def index
   end
 
   def show
     @user = current_user    
     @favorite = current_user.games 
+    @posts = current_user.posts
    
     # my_favorites = Favorite.where(user_id: current_user.id).pluck(:game_id)
     # //自分のいいねしたgame_idを配列で取得
@@ -13,7 +15,6 @@ end
 
   def edit
     @user = current_user
-     @user.image.cache! unless @user.image.blank?
   end
   
   def update
@@ -24,7 +25,7 @@ end
 
   private
     def user_params
-      params.require(:user).permit(:nickname, :email, :deleted_at, :image, :image_cache)
+      params.require(:user).permit(:nickname, :email, :deleted_at, :image)
     end
 
 end
