@@ -8,7 +8,10 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-  >
+
+
+
+
   <%= javascript_include_tag 'application' %>
   <link href="https://fonts.googleapis.com/css?family=Anton|Noto+Sans+JP" rel="stylesheet">
 </head>
@@ -17,6 +20,14 @@
   <%= render "partial/header" %>
   <%= yield %>
   <%= render "partial/footer" %>
+  <% unless flash.empty? %>
+  <script type="text/javascript">
+    <% flash.each do |f| %>
+    <% type = f[0].to_s.gsub('alert','error').gsub('notice','info') %>
+    toastr['<%= type %>']('<%= f[1] %>');
+    <% end %>
+  </script>
+  <% end %>
 </body>
 
 </html>

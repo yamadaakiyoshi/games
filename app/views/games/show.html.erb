@@ -37,7 +37,6 @@
             <% @game.posts.each do |p| %>
 
             <% if p.video? %>
-            <%# <% if micropost.picture.file.content_type.include?('image/') %>
             <% if p.video.file.content_type.include?('image/') %>
             <%= image_tag p.video.url %>
             <% else %>
@@ -45,6 +44,7 @@
                   controls: true, autobuffer: true %>
             <% end %>
             <% end %>
+            <%= p.post_text %>
             <%= render "posts/like", post: p %>
             <%= link_to "削除", post_path(game_id: p.game_id), method: :delete, class: "btn btn-danger" %>
 

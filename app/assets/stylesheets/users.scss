@@ -42,6 +42,55 @@
 
 }
 
+.slider {
+    list-style: none;
+}
+
+.unko {
+    height: 24rem;
+}
+
+.card {
+    width: 23rem;
+    height: 24rem;
+    float: left;
+    margin-left: 2%;
+}
+
+.card-img-top {
+    margin-left: 2%;
+    margin-top: 2%;
+    width: 96%;
+    height: 240px;
+}
+
+.card-text {
+    font-size: 35px
+}
+
+.back {
+    background-color: rgb(48, 44, 44);
+    color: white;
+}
+
+.card-text {
+    color: black;
+}
+
+.lb-dataContainer {
+    height: 200px;
+}
+
+
+.lb-data .lb-caption {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1em;
+    word-wrap: break-word;
+    white-space: normal;
+    display: block;
+}
+
 // .favorite-list {
 //     width: 100%;
 //     height: 250px;

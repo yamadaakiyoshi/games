@@ -19,10 +19,9 @@ class GamesController < ApplicationController
 
   def create
      post = Post.new(post_params)
-     binding.pry
      post.user_id = current_user.id
     if  post.save
-      redirect_to game_path(post.game.id)
+      redirect_to game_path(post.game.id),notice: "投稿を作成しました"
     else
       
       render "show"

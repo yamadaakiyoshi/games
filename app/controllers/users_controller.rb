@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def show
     @user = current_user    
     @favorite = current_user.games 
+    @posts = current_user.posts
    
     # my_favorites = Favorite.where(user_id: current_user.id).pluck(:game_id)
     # //自分のいいねしたgame_idを配列で取得

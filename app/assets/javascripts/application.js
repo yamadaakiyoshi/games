@@ -15,11 +15,17 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
-
+//= require toastr
+//= require lightcase
 
 $(function () {
+    toastr.options.timeOut = 100;
+});
+
+$(function () {
+
     $('.slider').slick({
-        
+
         centerMode: true,
         centerPadding: '60px',
         slidesToShow: 3,
