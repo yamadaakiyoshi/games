@@ -3,7 +3,7 @@ class GamesController < ApplicationController
   end
 
   def index
-    @games = Game.all
+    @games = Game.search(params[:search])
   end
 
   def show
