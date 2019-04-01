@@ -11,6 +11,8 @@
                 <div align="center">
                     <% if current_user.image.attached? %>
                     <%= image_tag current_user.image,width: "180px", height: "180px" %>
+                    <% else %>
+                    <%= image_tag "no-image.png",width: "180px", height: "180px" %>
                     <% end %>
 
                 </div>
@@ -22,7 +24,7 @@
                 </div>
                 <div align="center">
                     <%= link_to "編集",edit_user_path(@user.id), class: "btn btn-outline-success edit_btn" %>
-                    <%= link_to "退会", user_registration_path, method: :delete, class: "btn btn-outline-danger edit_btn" %>
+                    <%= link_to "退会", user_registration_path, method: :delete, class: "btn btn-outline-danger edit_btn","data-confirm" => "退会してよろしいですか？" %>
                 </div>
             </div>
 
@@ -89,7 +91,7 @@
                     </span>
                     <% end %>
                     <div>
-                        <%= link_to "削除", post_path(game_id: p.game_id), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "削除", post_path(p.id), method: :delete, class: "btn btn-danger","data-confirm" => "削除してよろしいですか？" %>
                     </div>
 
                 </div>

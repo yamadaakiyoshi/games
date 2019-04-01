@@ -1,0 +1,63 @@
+<div class="col-sm-4">
+    <div class="user-index-title">
+        <h1>ユーザー 一覧</h1>
+    </div>
+</div>
+
+<div class="col-sm-4"></div>
+
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th class="image-index-display">ユーザー画像</th>
+            <th class="nickname-index-display">ニックネーム</th>
+            <th class="email-index-diesplay">メール</th>
+            <th class="edit-index-display">編集</th>
+            <th class="delete-index-display">削除</th>
+        </tr>
+    </thead>
+    <% @users.each do |user| %>
+    <% if user.deleted_at %>
+    <tbody class="taikai">
+        <tr>
+            <td class="image-index-display">
+                <span class="game-show-user-imag">
+                    <% if user.image.attached? %>
+                    <%= image_tag user.image,width: "50px", height: "50px" %>
+                    <% else %>
+                    <%= image_tag "no-image.png",width: "50px", height: "50px" %>
+                    <% end %>
+                </span>
+            </td>
+            <td class="nickname-index-display"><%= user.nickname %></td>
+            <td class="email-index-diespla"><%= user.email %></td>
+            <td class="edit-index-display"></td>
+            <td class="delete-index-display"></td>
+        </tr>
+    </tbody>
+    <% else %>
+    <tbody>
+        <tr>
+            <td class="image-index-display">
+                <span class="index-user-imag">
+                    <% if user.image.attached? %>
+                    <%= image_tag user.image,width: "50px", height: "50px" %>
+                    <% else %>
+                    <%= image_tag "no-image.png",width: "50px", height: "50px" %>
+                    <% end %>
+                </span>
+            </td>
+            <td class="nickname-index-display"><%= user.nickname %></td>
+            <td class="emaili-ndex-diespla"><%= user.email %></td>
+            <td class="edit-index-display"><%= link_to "編集",edit_user_path(user.id), class: "btn btn-success  btn-xs" %>
+            </td>
+            <td class="delete-index-display">
+                <%= link_to "削除", admins_user_path(user, params:  {user: {deleted_at: Time.current} }),method: :put, class: "btn btn-danger btn-xs","data-confirm" => "削除してよろしいですか？"%>
+            </td>
+        </tr>
+    </tbody>
+    <% end %>
+    <% end %>
+</table>

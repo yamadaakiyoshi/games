@@ -18,18 +18,30 @@
                 <ul>
                     <% if admin_signed_in? %>
                     <li>
+                        <%=form_tag games_path, method: :get do %>
+                        <%=text_field_tag :search, params[:search], class: "header-search" %>
+                        <%=submit_tag "検索",class: "btn btn-banger"%>
+                        <% end %>
+                    </li>
+                    <li>
                         <%= link_to "ゲーム追加", new_admins_game_path %>
                     </li>
                     <li>
                         <%= link_to "ゲーム一覧", admins_games_path %>
                     </li>
                     <li>
-                        <%= link_to "投稿一覧", admins_posts_path %>
+                        <%= link_to "ユーザー一覧", admins_users_path %>
                     </li>
                     <li>
                         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete%>
                     </li>
                     <% else %>
+                    <li>
+                        <%=form_tag games_path, method: :get do %>
+                        <%=text_field_tag :search, params[:search], class: "header-search" %>
+                        <%=submit_tag "検索",class: "btn btn-banger"%>
+                        <% end %>
+                    </li>
                     <li>
                         <%= link_to "ログイン", new_admin_session_path %>
                     </li>
