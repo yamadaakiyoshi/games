@@ -34,7 +34,7 @@ gem 'toastr-rails'
 
 
 
-gem 'rmagick', '~> 2.16'
+gem 'rmagick'
 
 
 # Use ActiveStorage variant

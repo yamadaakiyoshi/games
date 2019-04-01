@@ -1,13 +1,34 @@
-<% @games.each do |game| %>
-<%= game.genre.genre_name %>
-<% if game.image? %>
-　　
-<%= image_tag game.image.thumb.url %>
-　
-<% else %>
-　　
-<p>aaaa</p>
-　
-<% end %>
+<div class="container">
 
-<% end %>
+    <% @games.each do |game| %>
+    <div class="row games_box">
+
+        <div class="col-sm-4">
+            <div class="games_index_title">
+                <%= link_to game_path(game.id) do %>
+                <%=  game.title %>
+                <% end %>
+            </div>
+
+
+            <div class="games_index_image">
+                <%= link_to game_path(game.id) do %>
+                <%= image_tag game.image.thumb.url %>
+                <% end %>
+            </div>
+        </div>
+
+
+        <div class="col-sm-8">
+            <div class="games_index_introduction">
+                <%= game.introduction %>
+            </div>
+
+            <div class="games_index_genre">
+                ジャンル：<%= game.genre.genre_name %>
+            </div>
+        </div>
+    </div>
+    <% end %>
+
+</div>

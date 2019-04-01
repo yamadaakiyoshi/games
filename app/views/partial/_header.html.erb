@@ -20,7 +20,7 @@
 
                     <li>
                         <%=form_tag games_path, method: :get do %>
-                        <%=text_field_tag :search, params[:search] %>
+                        <%=text_field_tag :search, params[:search], class: "header-search" %>
                         <%=submit_tag "検索",class: "btn btn-banger"%>
                         <% end %>
                     </li>
@@ -37,7 +37,7 @@
                     <% else %>
                     <li>
                         <%=form_tag games_path, method: :get do %>
-                        <%=text_field_tag :search, params[:search] %>
+                        <%=text_field_tag :search, params[:search], class: "header-search" %>
                         <%=submit_tag "検索",class: "btn btn-banger"%>
                         <% end %>
                     </li>
