@@ -51,7 +51,8 @@
             </td>
             <td class="nickname-index-display"><%= user.nickname %></td>
             <td class="emaili-ndex-diespla"><%= user.email %></td>
-            <td class="edit-index-display"><%= link_to "編集",edit_user_path(user.id), class: "btn btn-success  btn-xs" %>
+            <td class="edit-index-display">
+                <%= link_to "編集",edit_admins_user_path(user.id), class: "btn btn-success  btn-xs" %>
             </td>
             <td class="delete-index-display">
                 <%= link_to "削除", admins_user_path(user, params:  {user: {deleted_at: Time.current} }),method: :put, class: "btn btn-danger btn-xs","data-confirm" => "削除してよろしいですか？"%>

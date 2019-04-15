@@ -27,7 +27,7 @@ class Admins::GamesController < ApplicationController
   def update
     @game = Game.find(params[:id])
     if @game.update(game_params)
-        redirect_to admins_path
+        redirect_to admins_games_path
       else
         render "edit"
       end

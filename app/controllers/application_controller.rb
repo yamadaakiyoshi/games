@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     # ログイン後に遷移するpathを設定
     if current_admin.present?
-        admins_path
+        admins_games_path
     else
          user_path(current_user)
     end

@@ -2,14 +2,14 @@
 
     <div class="row">
         <div class="col-sm-7">
-            <% if current_user.image.attached? %>
-            <%= image_tag current_user.image,width: "200px", height: "200px" %>
+            <% if @user.image.attached? %>
+            <%= image_tag @user.image,width: "200px", height: "200px" %>
             <% else %>
             <%= image_tag "no-image.png",width: "200px", height: "200px" %>
 
             <% end %>
 
-            <%=form_for(@user) do |f| %>
+            <%=form_for @user,url: admins_user_path(@user) do |f| %>
             <%= f.label "プロフィール画像選択" %></br>
             <%= f.file_field :image %>
             <%= f.hidden_field :image_cache %>
