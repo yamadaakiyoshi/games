@@ -23,8 +23,8 @@
                     </div>
                 </div>
                 <div align="center">
-                    <%= link_to "編集",edit_user_path(@user.id), class: "btn btn-outline-success edit_btn" %>
-                    <%= link_to "退会", user_registration_path, method: :delete, class: "btn btn-outline-danger edit_btn","data-confirm" => "退会してよろしいですか？" %>
+                    <%= link_to "編集",edit_user_path(@user.id), class: "btn btn-outline-success" %>
+                    <%= link_to "退会", user_registration_path, method: :delete, class: "btn btn-outline-danger","data-confirm" => "退会してよろしいですか？" %>
                 </div>
             </div>
 
@@ -87,11 +87,11 @@
                     <span class="card-text trigger"> <%= p.post_text.truncate(100) %>
                     </span>
                     <% else %>
-                    <span class="card-text trigger"> <%= p.post_text.truncate(27) %>
+                    <span class="card-text trigger"> <%= p.post_text.truncate(20) %>
                     </span>
                     <% end %>
                     <div>
-                        <%= link_to "削除", post_path(p.id), method: :delete, class: "btn btn-danger","data-confirm" => "削除してよろしいですか？" %>
+                        <%= link_to "削除", post_path(p.id), method: :delete, class: "btn btn-outline-danger","data-confirm" => "削除してよろしいですか？" %>
                     </div>
 
                 </div>
