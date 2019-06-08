@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
   root 'games#top'
-  get '/admins' => "admins#index", as: "admins" # 管理用top
+namespace :admins do
+  get '/admins' => "games#index", as: "admins" # 管理用top
+end
   
   
   get 'users/index'

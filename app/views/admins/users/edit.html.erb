@@ -1,0 +1,43 @@
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col-sm-7">
+            <% if @user.image.attached? %>
+            <%= image_tag @user.image,width: "200px", height: "200px" %>
+            <% else %>
+            <%= image_tag "no-image.png",width: "200px", height: "200px" %>
+
+            <% end %>
+
+            <%=form_for @user,url: admins_user_path(@user) do |f| %>
+            <%= f.label "プロフィール画像選択" %></br>
+            <%= f.file_field :image %>
+            <%= f.hidden_field :image_cache %>
+
+        </div>
+        <div class="col-sm-5">
+            <h2 class="title_signup_display">ユーザー編集</h2>
+
+            <div class="form-group mt-5">
+                <div class="field">
+                    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname",placeholder: "ニックネーム", class: "form-control" %>
+                </div>
+            </div>
+
+            <div class="form-group mt-4">
+                <div class="field">
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "メールアドレス", class: "form-control" %>
+                </div>
+            </div>
+
+            <div class="actions">
+                <div align="center">
+                    <%= f.submit "登録", class:"btn btn-outline-dark" %>
+                </div>
+            </div>
+            <% end %>
+        </div>
+
+    </div>
+</div>
+</div>

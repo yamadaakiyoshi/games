@@ -5,14 +5,14 @@
 
         <div class="col-sm-4">
             <div class="games_index_title">
-                <%= link_to game_path(game.id) do %>
+                <%= link_to edit_admins_game_path(game.id) do %>
                 <%=  game.title %>
                 <% end %>
             </div>
 
 
             <div class="games_index_image">
-                <%= link_to game_path(game.id) do %>
+                <%= link_to edit_admins_game_path(game.id) do %>
                 <%= image_tag game.image.thumb.url %>
                 <% end %>
             </div>

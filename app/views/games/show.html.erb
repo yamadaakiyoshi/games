@@ -27,7 +27,7 @@
 
 
                     <%= f.hidden_field :game_id, :value => @game.id %>
-                    <%= f.submit %>
+                    <%= f.submit  "投稿", class: "btn btn-outline-light btn-sm"%>
                 </div>
                 <% end %>
             </div>
@@ -76,7 +76,7 @@
                         <%= render "posts/like", post: p %>
 
                         <% if current_user == p.user %>
-                        <%= link_to "削除", post_path(p.id), method: :delete, class: "btn btn-danger","data-confirm" => "削除してよろしいですか？" %>
+                        <%= link_to "削除", post_path(p.id), method: :delete, class: "btn btn-outline-danger btn-sm","data-confirm" => "削除してよろしいですか？" %>
                         <% end %>
                     </div>
                     <hr />
@@ -93,7 +93,7 @@
                         <span class="game-postcoment"><%= postcoment.content %></span><br>
                     </div>
                     <div class="postcoment-delete">
-                        <%= link_to "削除", post_postcoments_path(post_id: postcoment.post_id, id: postcoment.id), method: :delete, class: "btn btn-danger","data-confirm" => "削除してよろしいですか？" %>
+                        <%= link_to "削除", post_postcoments_path(post_id: postcoment.post_id, id: postcoment.id), method: :delete, class: "btn btn-outline-danger btn-sm","data-confirm" => "削除してよろしいですか？" %>
                     </div>
 
                     <% end %>
@@ -101,7 +101,7 @@
                     <div class="field">
 
                         <%= o.text_field :content %><br>
-                        <%= o.submit "返信"%>
+                        <%= o.submit "返信", class: "btn btn-outline-primary btn-sm"%>
                     </div>
 
                     <% end %>
